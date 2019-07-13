@@ -62,11 +62,11 @@
                     </div>
                     <div class="form-group">
                         <label for="firstTime">First Train Time (HH:mm - military time)</label>
-                        <input type="text" class="form-control" id="firstTime" placeholder="14:45">
+                        <input type="text" class="form-control" id="firstTime" placeholder="08:45">
                     </div>
                     <div class="form-group">
                         <label for="frequency">Frequency (min)</label>
-                        <input type="number" class="form-control" id="frequency" placeholder="5">
+                        <input type="number" min="1" max="60" class="form-control" id="frequency" placeholder="5">
                     </div>
                     <div>
                         <button type="submit" id="submit" class="btn btn-primary">Submit</button>

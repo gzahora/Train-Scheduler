@@ -20,7 +20,7 @@
      var trainName = "";
      var destination = "";
      var frequency = 0;
-     var firstTime = "";
+     var firstTime = 0;
     
     
      // Capture Button Click
@@ -34,6 +34,8 @@
        destination = $("#destination").val().trim();
        frequency = $("#frequency").val().trim();
        firstTime = $("#firstTime").val().trim();
+       console.log(firstTime);
+       console.log("Fre 1: " + frequency);
     
        // Code for handling the push
        database.ref().push({
@@ -45,6 +47,38 @@
        });
     
      });
+
+     // First Time Converted
+    var firstTimeConverted = moment(firstTime, "hh:mm");
+    console.log("First time: " + firstTimeConverted);
+
+    //Frequency Converted
+    console.log("Frequency: " + frequency);
+    var frequencyConverted = parseInt(frequency, 10);
+    console.log("Frequency: " + frequencyConverted);
+    console.log("Frequency: " + $("#frequency"));
+
+
+    // Current Time
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+    // Difference between the times
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
+
+    // Time apart (remainder)
+    var tRemainder = diffTime % 5;
+    console.log("Remainder: " + tRemainder);
+
+    // Minute Until Train
+    var minutesLeft = 5 - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + minutesLeft);
+
+    // Next Train
+    var nextTrain = moment().add(minutesLeft, "minutes").format("hh:mm a");
+    console.log("ARRIVAL TIME: " + nextTrain);
+     
     
     
      // Firebase watcher .on("child_added"
@@ -62,9 +96,15 @@
        destinationData.text(sv.destination);
     
        var frequencyData = $("<td>");
-       frequencyData.text(sv.frequency);      
+       frequencyData.text(sv.frequency);
+
+       var arrivalData = $("<td>");
+       arrivalData.text(nextTrain);
+
+       var minutesLeftData = $("<td>");
+       minutesLeftData.text(minutesLeft);       
         
-       newRow.append(nameData, destinationData, frequencyData);
+       newRow.append(nameData, destinationData, frequencyData, arrivalData, minutesLeftData);
        $("tbody").append(newRow);
     
        // Console.loging the last user's data
@@ -74,9 +114,9 @@
 
     
        // Change the HTML to reflect
-       $("#trainName-display").text(sv.trainName);
-       $("#destination-display").text(sv.destination);
-       $("#frequency-display").text(sv.frequency);
+       $("#trainName").text(sv.trainName);
+       $("#destination").text(sv.destination);
+       $("#frequency").text(sv.frequency);
     
        // Handle the errors
      }, function (errorObject) {
