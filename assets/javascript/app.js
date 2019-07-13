@@ -16,6 +16,14 @@ $(document).ready(function () {
     // Create a variable to reference the database.
     var database = firebase.database();
 
+    function currentTime() {
+        var current = moment().format('LT');
+        $("#currentTime").html(current);
+        setTimeout(currentTime, 1000);
+      };
+
+      currentTime(); 
+
     // Initial Values
     var trainName = "";
     var destination = "";
@@ -26,6 +34,14 @@ $(document).ready(function () {
     // Capture Button Click
     $("#submit").on("click", function (event) {
         event.preventDefault();
+
+        if ($("#trainName").val().trim() === "" ||
+        $("#destination").val().trim() === "" ||
+        $("#firstTime").val().trim() === "" ||
+        $("#frequency").val().trim() === "") {
+    
+        alert("Please fill in all details to add new train");
+        }else {
 
         // Grabbed values from text boxes
         trainName = $("#trainName").val().trim();
@@ -41,7 +57,7 @@ $(document).ready(function () {
             firstTime: firstTime,
             dateAdded: firebase.database.ServerValue.TIMESTAMP
         });
-
+    }
     });
 
 
