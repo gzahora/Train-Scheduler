@@ -27,7 +27,6 @@ $(document).ready(function () {
     $("#submit").on("click", function (event) {
         event.preventDefault();
 
-
         // Grabbed values from text boxes
         trainName = $("#trainName").val().trim();
         destination = $("#destination").val().trim();
@@ -46,11 +45,13 @@ $(document).ready(function () {
     });
 
 
+
     // Firebase watcher .on("child_added"
     database.ref().on("child_added", function (snapshot) {
 
         // storing the snapshot.val() in a variable for convenience
         var sv = snapshot.val();
+        var key = snapshot.key;
 
         var newRow = $("<tr>");
 
@@ -80,21 +81,33 @@ $(document).ready(function () {
 
 
         // storing remaining snapshot.val() after calculations in variables for convenience
-        var frequencyData = $("<td>");
+        var frequencyData = $("<td class='text-center'>");
         frequencyData.text(sv.frequency);
 
-        var arrivalData = $("<td>");
+        var arrivalData = $("<td class='text-center'>");
         arrivalData.text(nextTrain);
 
-        var minutesLeftData = $("<td>");
+        var minutesLeftData = $("<td class='text-center'>");
         minutesLeftData.text(minutesLeft);
 
+        var remove = ($("<td class='text-center'><button class='remove btn btn-danger btn-sm p-2' data-key='" + key + "'>x</button></td>"));
+
         //appending new row
-        newRow.append(nameData, destinationData, frequencyData, arrivalData, minutesLeftData);
+        newRow.append((nameData), destinationData, frequencyData, arrivalData, minutesLeftData, remove);
         $("tbody").append(newRow);
 
         // Handle the errors
     }, function (errorObject) {
         console.log("Errors handled: " + errorObject.code);
     });
+
+    $(document).on("click", ".remove", function() {
+        keyref = $(this).attr("data-key");
+        database.ref().child(keyref).remove();
+        window.location.reload();
+      });
 });
+
+setInterval(function() {
+    window.location.reload();
+  }, 60000);

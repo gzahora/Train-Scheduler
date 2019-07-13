@@ -18,60 +18,63 @@
 
 <body>
     <div class="container">
-        <div class="jumbotron text-light bg-dark text-center">
+        <div class="jumbotron text-light bg-dark text-center p-3">
             <h1 class="display-4">Always on Time Train Co.</h1>
             <p class="lead">Comprehensive Train Schedule</p>
         </div>
     </div>
     <div class="container">
-        <div class="card">
-            <div class="card-header">Current Train Schedule</div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Train Name</th>
-                            <th scope="col">Destination</th>
-                            <th scope="col">Frequency (min)</th>
-                            <th scope="col">Next Arrival</th>
-                            <th scope="col">Minutes Away</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
+        <div class="row">
+            <div class="col-9">
+                <div class="card">
+                    <div class="card-header">Current Train Schedule</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Train Name</th>
+                                    <th scope="col">Destination</th>
+                                    <th scope="col">Frequency (min)</th>
+                                    <th scope="col">Next Arrival</th>
+                                    <th scope="col">Minutes Away</th>
+                                    <th scope="col">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <br>
-    <br>
-    <!-- This section starts the form to add Employees -->
-    <div class="container">
-        <div class="card">
-            <div class="card-header">Add Train</div>
-            <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <label for="trainName">Train Name</label>
-                        <input type="text" class="form-control" id="trainName" placeholder="Choo Choo Express">
+
+            <!-- This section starts the form to add Employees -->
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header">Add Train</div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="trainName">Train Name</label>
+                                <input type="text" class="form-control" id="trainName" placeholder="Choo Choo Express" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="destination">Destination</label>
+                                <input type="text" class="form-control" id="destination" placeholder="Portland, OR" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstTime">First Train Time <br> (hh:mm - military time)</label>
+                                <input type="text" class="form-control" id="firstTime" placeholder="08:45" pattern="[0-2][0-9]:[[0-6][0-9]" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="frequency">Frequency (min)</label>
+                                <input type="number" class="form-control" id="frequency" placeholder="5" required>
+                            </div>
+                            <div>
+                                <button type="submit" id="submit" class="btn btn-primary mr-1">Submit</button>
+                                <button type="reset" id="reset" class="btn btn-primary ml-3">Clear Form</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="destination">Destination</label>
-                        <input type="text" class="form-control" id="destination" placeholder="Portland, OR">
-                    </div>
-                    <div class="form-group">
-                        <label for="firstTime">First Train Time (HH:mm - military time)</label>
-                        <input type="text" class="form-control" id="firstTime" placeholder="08:45">
-                    </div>
-                    <div class="form-group">
-                        <label for="frequency">Frequency (min)</label>
-                        <input type="number" class="form-control" id="frequency" placeholder="5">
-                    </div>
-                    <div>
-                        <button type="reset" id="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
