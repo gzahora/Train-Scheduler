@@ -37,9 +37,9 @@
         <div class="row">
             <!-- This section starts the form to add Employees -->
             <div class="col-3">
-                <div class="card">
-                    <div class="card-header">Add Train</div>
-                    <div class="card-body">
+                <div class="card" style="border-style: none">
+                    <div class="card-header bg-dark text-white"><h6>Add Train</h6></div>
+                    <div class="card-body bg-secondary text-white">
                         <form>
                             <div class="form-group">
                                 <label for="trainName">Train Name</label>
@@ -61,8 +61,8 @@
                                 <input type="number" class="form-control" id="frequency" placeholder="5" required>
                             </div>
                             <div>
-                                <button type="submit" id="submit" class="btn btn-primary mr-1">Submit</button>
-                                <button type="reset" id="reset" class="btn btn-primary ml-3">Clear Form</button>
+                                <button type="submit" id="submit" class="btn btn-dark mr-1">Submit</button>
+                                <button type="reset" id="reset" class="btn btn-dark ml-3">Clear Form</button>
                             </div>
                         </form>
                     </div>
@@ -70,10 +70,10 @@
             </div>
             <!-- This section displays the train schedule -->
             <div class="col-9">
-                <div class="card">
-                    <div class="card-header">Current Train Schedule</div>
-                    <div class="card-body">
-                        <table class="table">
+                <div class="card" style="border-style: none">
+                    <div class="card-header bg-dark text-white"><h6>Current Train Schedule</h6></div>
+                    <div class="card-body bg-secondary text-white">
+                        <table class="table text-white">
                             <thead id="tableBorder" class="table-borderless">
                                 <tr>
                                     <th scope="col">Train Name</th>
@@ -81,7 +81,7 @@
                                     <th scope="col" class="text-center">Frequency (min)</th>
                                     <th scope="col" class="text-center">Next Arrival</th>
                                     <th scope="col" class="text-center">Minutes Away</th>
-                                    <th scope="col">Remove</th>
+                                    <th scope="col" class="text center">Remove</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

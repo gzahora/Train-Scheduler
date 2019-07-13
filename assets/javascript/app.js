@@ -71,17 +71,17 @@ $(document).ready(function () {
 
         var newRow = $("<tr>");
 
-        var nameData = $("<td>");
+        var nameData = $("<td class='align-middle'>");
         nameData.text(sv.trainName);
 
-        var destinationData = $("<td>");
+        var destinationData = $("<td class='align-middle'>");
         destinationData.text(sv.destination);
 
 
         //performing calculations to determine next train time and minutes left
 
         // First Time Converted
-        var firstTimeConverted = moment(firstTime, "hh:mm");
+        var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
 
         // Difference between first time and current time -- current time = moment() --
         var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
@@ -97,16 +97,16 @@ $(document).ready(function () {
 
 
         // storing remaining snapshot.val() after calculations in variables for convenience
-        var frequencyData = $("<td class='text-center'>");
+        var frequencyData = $("<td class='text-center align-middle'>");
         frequencyData.text(sv.frequency);
 
-        var arrivalData = $("<td class='text-center'>");
+        var arrivalData = $("<td class='text-center align-middle'>");
         arrivalData.text(nextTrain);
 
-        var minutesLeftData = $("<td class='text-center'>");
+        var minutesLeftData = $("<td class='text-center align-middle'>");
         minutesLeftData.text(minutesLeft);
 
-        var remove = ($("<td class='text-center'><button class='remove btn btn-danger btn-sm p-2' data-key='" + key + "'>x</button></td>"));
+        var remove = ($("<td class='text-center align-middle'><button class='remove btn btn-dark btn-sm p-2' data-key='" + key + "'>x</button></td>"));
 
         //appending new row
         newRow.append((nameData), destinationData, frequencyData, arrivalData, minutesLeftData, remove);
