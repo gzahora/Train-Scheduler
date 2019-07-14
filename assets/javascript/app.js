@@ -20,9 +20,9 @@ $(document).ready(function () {
         var current = moment().format('LT');
         $("#currentTime").html(current);
         setTimeout(currentTime, 1000);
-      };
+    };
 
-      currentTime(); 
+    currentTime();
 
     // Initial Values
     var trainName = "";
@@ -36,36 +36,36 @@ $(document).ready(function () {
         event.preventDefault();
 
         if ($("#trainName").val().trim() === "" ||
-        $("#destination").val().trim() === "" ||
-        $("#firstTime").val().trim() === "" ||
-        $("#frequency").val().trim() === "") {
-    
-        alert("Please fill in all details to add new train");
-        }else {
+            $("#destination").val().trim() === "" ||
+            $("#firstTime").val().trim() === "" ||
+            $("#frequency").val().trim() === "") {
 
-        // Grabbed values from text boxes
-        trainName = $("#trainName").val().trim();
-        destination = $("#destination").val().trim();
-        frequency = $("#frequency").val().trim();
-        firstTime = $("#firstTime").val().trim();
+            alert("Please fill in all details to add new train");
+        } else {
 
-        // Code for handling the push
-        database.ref().push({
-            trainName: trainName,
-            destination: destination,
-            frequency: frequency,
-            firstTime: firstTime,
-            dateAdded: firebase.database.ServerValue.TIMESTAMP
-        });
-    }
+            // Grabbed values from text boxes
+            trainName = $("#trainName").val().trim();
+            destination = $("#destination").val().trim();
+            frequency = $("#frequency").val().trim();
+            firstTime = $("#firstTime").val().trim();
+
+            // Code for handling the push
+            database.ref().push({
+                trainName: trainName,
+                destination: destination,
+                frequency: frequency,
+                firstTime: firstTime,
+                dateAdded: firebase.database.ServerValue.TIMESTAMP
+            });
+        }
     });
 
 
 
-    // Firebase watcher .on("child_added"
+    // Firebase watcher
     database.ref().on("child_added", function (snapshot) {
 
-        // storing the snapshot.val() in a variable for convenience
+        // storing the snapshot val and key
         var sv = snapshot.val();
         var key = snapshot.key;
 
@@ -96,7 +96,7 @@ $(document).ready(function () {
         var nextTrain = moment().add(minutesLeft, "minutes").format("hh:mm a");
 
 
-        // storing remaining snapshot.val() after calculations in variables for convenience
+        // storing remaining snapshot.val() after calculations in variables
         var frequencyData = $("<td class='text-center align-middle'>");
         frequencyData.text(sv.frequency);
 
@@ -106,10 +106,10 @@ $(document).ready(function () {
         var minutesLeftData = $("<td class='text-center align-middle'>");
         minutesLeftData.text(minutesLeft);
 
-        var remove = ($("<td class='text-center align-middle'><button class='remove btn btn-dark btn-sm p-2' data-key='" + key + "'>x</button></td>"));
+        var remove = ($("<td class='text-center align-middle'><button class='remove btn btn-sm p-2 text-white font-weight-bold' style='background-color: #E29B65' data-key='" + key + "'>x</button></td>"));
 
         //appending new row
-        newRow.append((nameData), destinationData, frequencyData, arrivalData, minutesLeftData, remove);
+        newRow.append(nameData, destinationData, frequencyData, arrivalData, minutesLeftData, remove);
         $("tbody").append(newRow);
 
         // Handle the errors
@@ -117,13 +117,14 @@ $(document).ready(function () {
         console.log("Errors handled: " + errorObject.code);
     });
 
-    $(document).on("click", ".remove", function() {
+    $(document).on("click", ".remove", function () {
         keyref = $(this).attr("data-key");
         database.ref().child(keyref).remove();
         window.location.reload();
-      });
+    });
 });
 
-setInterval(function() {
+//reloads the page every minute to refresh the next arrival time and number of minutes left
+setInterval(function () {
     window.location.reload();
-  }, 60000);
+}, 60000);

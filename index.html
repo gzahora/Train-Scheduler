@@ -18,7 +18,7 @@
 
 <body>
     <div class="container">
-        <div class="jumbotron text-light bg-dark p-1">
+        <div class="jumbotron text-white p-1" style="background-color: #515E80">
             <div class="row">
                 <div class="col-12">
                     <h1 class="display-4 text-center">Always on Time Train Co.</h1>
@@ -38,8 +38,8 @@
             <!-- This section starts the form to add Employees -->
             <div class="col-3">
                 <div class="card" style="border-style: none">
-                    <div class="card-header bg-dark text-white"><h6>Add Train</h6></div>
-                    <div class="card-body bg-secondary text-white">
+                    <div class="card-header" style="background-color: #FEE253"><h6>Add Train</h6></div>
+                    <div class="card-body text-white font-weight-bold" style="background-color: #98ABB9">
                         <form>
                             <div class="form-group">
                                 <label for="trainName">Train Name</label>
@@ -61,8 +61,8 @@
                                 <input type="number" class="form-control" id="frequency" placeholder="5" required>
                             </div>
                             <div>
-                                <button type="submit" id="submit" class="btn btn-dark mr-1">Submit</button>
-                                <button type="reset" id="reset" class="btn btn-dark ml-3">Clear Form</button>
+                                <button type="submit" id="submit" class="btn mr-1 text-white" style="background-color: #E29B65">Submit</button>
+                                <button type="reset" id="reset" class="btn ml-3 text-white" style="background-color: #E29B65">Clear Form</button>
                             </div>
                         </form>
                     </div>
@@ -71,17 +71,18 @@
             <!-- This section displays the train schedule -->
             <div class="col-9">
                 <div class="card" style="border-style: none">
-                    <div class="card-header bg-dark text-white"><h6>Current Train Schedule</h6></div>
-                    <div class="card-body bg-secondary text-white">
+                    <div class="card-header" style="background-color: #FEE253"><h6>Current Train Schedule</h6></div>
+                    <div class="card-body" style="background-color: #98ABB9">
                         <table class="table text-white">
                             <thead id="tableBorder" class="table-borderless">
-                                <tr>
+                                <tr><strong>
                                     <th scope="col">Train Name</th>
                                     <th scope="col">Destination</th>
                                     <th scope="col" class="text-center">Frequency (min)</th>
                                     <th scope="col" class="text-center">Next Arrival</th>
                                     <th scope="col" class="text-center">Minutes Away</th>
                                     <th scope="col" class="text center">Remove</th>
+                                    </strong>
                                 </tr>
                             </thead>
                             <tbody></tbody>
